@@ -324,5 +324,72 @@ document.querySelector('.reports-section').scrollIntoView({ behavior: 'smooth' }
 // Display reports on page load
 displayReports();
 </script>
+<script type="module">
+
+  // Import the functions you need from the SDKs you need
+
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/12.9.0/firebase-app.js";
+  import { getAnalytics } from "https://www.gstatic.com/firebasejs/12.9.0/firebase-analytics.js";
+
+  // TODO: Add SDKs for Firebase products that you want to use
+
+  // https://firebase.google.com/docs/web/setup#available-libraries
+
+
+  // Your web app's Firebase configuration
+
+  // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+
+  const firebaseConfig = {
+    apiKey: "AIzaSyDni4qYbb-p6btwF5btGYp6junEtrpnVDE",
+    authDomain: "finding-missing-item.firebaseapp.com",
+    projectId: "finding-missing-item",
+    storageBucket: "finding-missing-item.firebasestorage.app",
+    messagingSenderId: "397407635579",
+    appId: "1:397407635579:web:caf6086333589592543ade",
+    measurementId: "G-8YJ82Z6S1N"
+
+  };
+
+
+  // Initialize Firebase
+
+  const app = initializeApp(firebaseConfig);
+
+  const analytics = getAnalytics(app);
+
+  // --- ส่วนการทำงาน ---
+
+  // 1. ฟังก์ชันส่งข้อมูล (เมื่อผู้ใช้กดส่ง)
+  window.sendData = async () => {
+    const userInput = document.getElementById('myInput').value;
+    try {
+      await addDoc(collection(db, "messages"), {
+        text: userInput,
+        timestamp: new Date()
+      });
+      document.getElementById('myInput').value = ""; // ล้างช่องกรอก
+    } catch (e) {
+      console.error("Error adding document: ", e);
+    }
+  };
+
+  // 2. ฟังก์ชันดึงข้อมูลมาแสดงแบบ Real-time
+  const q = query(collection(db, "messages"), orderBy("timestamp", "desc"));
+  onSnapshot(q, (snapshot) => {
+    const listElement = document.getElementById('dataList');
+    listElement.innerHTML = ""; // ล้างค่าเก่า
+    snapshot.forEach((doc) => {
+      const li = document.createElement("li");
+      li.textContent = doc.data().text;
+      listElement.appendChild(li);
+    });
+  });
+</script>
+  <input type="text" id="myInput" placeholder="พิมพ์ข้อความที่นี่...">
+<button onclick="sendData()">ส่งข้อมูล</button>
+
+<ul id="dataList">
+  </ul>
 </body>
 </html>
