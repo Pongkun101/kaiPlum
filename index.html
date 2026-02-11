@@ -4,7 +4,6 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>แจ้งของหาย - Lost Items Report</title>
-<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
 <style>
 * {
 margin: 0;
@@ -14,7 +13,7 @@ box-sizing: border-box;
 
 body {
 font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+background: linear-gradient(135deg, #66ea6d 0%, #b75ace 100%);
 min-height: 100vh;
 padding: 20px;
 }
@@ -22,14 +21,14 @@ padding: 20px;
 .container {
 max-width: 800px;
 margin: 0 auto;
-background: white;
+background: rgb(255, 255, 255);
 border-radius: 20px;
-box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+box-shadow: 0 20px 60px rgba(214, 102, 209, 0.3);
 overflow: hidden;
 }
 
 .header {
-background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+background: linear-gradient(135deg, #ff91ce 0%, #70ff8f 100%);
 color: white;
 padding: 40px 30px;
 text-align: center;
@@ -45,84 +44,6 @@ font-size: 1.1em;
 opacity: 0.9;
 }
 
-.admin-section {
-background: #fff3cd;
-border: 2px solid #ffc107;
-border-radius: 10px;
-padding: 20px;
-margin: 30px;
-}
-
-.admin-section h3 {
-color: #856404;
-margin-bottom: 15px;
-display: flex;
-align-items: center;
-gap: 10px;
-}
-
-.config-group {
-margin-bottom: 15px;
-}
-
-.config-group label {
-display: block;
-font-weight: 600;
-margin-bottom: 5px;
-color: #856404;
-font-size: 0.95em;
-}
-
-.config-group input {
-width: 100%;
-padding: 10px;
-border: 2px solid #ffc107;
-border-radius: 8px;
-font-size: 0.95em;
-}
-
-.config-group small {
-display: block;
-margin-top: 5px;
-color: #856404;
-font-size: 0.85em;
-}
-
-.save-config-btn {
-background: #ffc107;
-color: #856404;
-border: none;
-padding: 12px 24px;
-border-radius: 8px;
-font-weight: 600;
-cursor: pointer;
-transition: all 0.3s;
-}
-
-.save-config-btn:hover {
-background: #ffcd39;
-transform: translateY(-2px);
-}
-
-.status-indicator {
-display: inline-block;
-padding: 4px 12px;
-border-radius: 12px;
-font-size: 0.85em;
-font-weight: 600;
-margin-left: 10px;
-}
-
-.status-active {
-background: #d4edda;
-color: #155724;
-}
-
-.status-inactive {
-background: #f8d7da;
-color: #721c24;
-}
-
 .form-section {
 padding: 40px 30px;
 }
@@ -135,7 +56,7 @@ label {
 display: block;
 font-weight: 600;
 margin-bottom: 8px;
-color: #333;
+color: hsl(0, 0%, 0%);
 font-size: 1.05em;
 }
 
@@ -147,7 +68,7 @@ textarea,
 select {
 width: 100%;
 padding: 12px 15px;
-border: 2px solid #e0e0e0;
+border: 2px solid #ff94d6;
 border-radius: 10px;
 font-size: 1em;
 transition: all 0.3s;
@@ -158,8 +79,8 @@ input:focus,
 textarea:focus,
 select:focus {
 outline: none;
-border-color: #667eea;
-box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+border-color: #c65adb;
+box-shadow: 0 0 0 3px rgba(84, 207, 146, 0.1);
 }
 
 textarea {
@@ -170,7 +91,7 @@ min-height: 120px;
 .submit-btn {
 width: 100%;
 padding: 15px;
-background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+background: linear-gradient(135deg, #7fffaa 0%, #da72d4 100%);
 color: white;
 border: none;
 border-radius: 10px;
@@ -182,16 +103,11 @@ transition: transform 0.2s, box-shadow 0.2s;
 
 .submit-btn:hover {
 transform: translateY(-2px);
-box-shadow: 0 10px 25px rgba(102, 126, 234, 0.3);
+box-shadow: 0 10px 25px rgba(221, 79, 186, 0.3);
 }
 
 .submit-btn:active {
 transform: translateY(0);
-}
-
-.submit-btn:disabled {
-opacity: 0.6;
-cursor: not-allowed;
 }
 
 .reports-section {
@@ -201,7 +117,7 @@ border-top: 2px solid #e0e0e0;
 }
 
 .reports-section h2 {
-color: #333;
+color: #e94ec7;
 margin-bottom: 20px;
 font-size: 1.8em;
 }
@@ -211,12 +127,12 @@ background: white;
 padding: 20px;
 border-radius: 10px;
 margin-bottom: 15px;
-border-left: 4px solid #667eea;
-box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+border-left: 4px solid #57ff97;
+box-shadow: 0 2px 8px rgba(248, 108, 178, 0.1);
 }
 
 .report-card h3 {
-color: #667eea;
+color: #ff7aff;
 margin-bottom: 10px;
 }
 
@@ -226,7 +142,7 @@ color: #555;
 }
 
 .report-detail strong {
-color: #333;
+color: #e448bd;
 }
 
 .no-reports {
@@ -246,40 +162,6 @@ border: 1px solid #c3e6cb;
 display: none;
 }
 
-.error-message {
-background: #f8d7da;
-color: #721c24;
-padding: 15px;
-border-radius: 10px;
-margin-bottom: 20px;
-border: 1px solid #f5c6cb;
-display: none;
-}
-
-.info-box {
-background: #d1ecf1;
-border: 1px solid #bee5eb;
-border-radius: 10px;
-padding: 15px;
-margin: 20px 30px;
-color: #0c5460;
-}
-
-.info-box strong {
-display: block;
-margin-bottom: 10px;
-}
-
-.info-box ol {
-margin-left: 20px;
-line-height: 1.8;
-}
-
-.info-box a {
-color: #0c5460;
-font-weight: 600;
-}
-
 @media (max-width: 600px) {
 .header h1 {
 font-size: 1.8em;
@@ -289,10 +171,6 @@ font-size: 1.8em;
 .reports-section {
 padding: 30px 20px;
 }
-
-.admin-section {
-margin: 20px;
-}
 }
 </style>
 </head>
@@ -300,56 +178,13 @@ margin: 20px;
 <div class="container">
 <div class="header">
 <h1>🔍 แจ้งของหาย</h1>
-<p>ระบบรายงานสิ่งของสูญหาย พร้อมแจ้งเตือนอีเมล</p>
-</div>
-
-<div class="info-box">
-<strong>📧 วิธีตั้งค่าการแจ้งเตือนอีเมล:</strong>
-<ol>
-<li>ไปที่ <a href="https://www.emailjs.com/" target="_blank">EmailJS.com</a> สมัครฟรี</li>
-<li>เพิ่ม Email Service (เช่น Gmail)</li>
-<li>สร้าง Email Template (ใช้ชื่อตัวแปร: {{itemName}}, {{category}}, {{description}}, {{location}}, {{reporterName}}, {{phone}}, {{email}}, {{lostDate}})</li>
-<li>คัดลอก <strong>Service ID</strong>, <strong>Template ID</strong> และ <strong>Public Key</strong></li>
-<li>กรอกข้อมูลในช่องด้านล่าง</li>
-</ol>
-</div>
-
-<div class="admin-section">
-<h3>
-⚙️ ตั้งค่าการแจ้งเตือน
-<span class="status-indicator" id="emailStatus">ยังไม่ได้ตั้งค่า</span>
-</h3>
-
-<div class="config-group">
-<label>อีเมลที่ต้องการรับการแจ้งเตือน</label>
-<input type="email" id="adminEmail" placeholder="your.email@example.com">
-<small>📩 อีเมลของคุณที่จะรับแจ้งเตือนเมื่อมีคนแจ้งของหาย</small>
-</div>
-
-<div class="config-group">
-<label>EmailJS Service ID</label>
-<input type="text" id="serviceId" placeholder="service_xxxxxxx">
-<small>จาก EmailJS Dashboard</small>
-</div>
-
-<div class="config-group">
-<label>EmailJS Template ID</label>
-<input type="text" id="templateId" placeholder="template_xxxxxxx">
-<small>จาก EmailJS Email Templates</small>
-</div>
-
-<div class="config-group">
-<label>EmailJS Public Key</label>
-<input type="text" id="publicKey" placeholder="xxxxxxxxxxxxxxx">
-<small>จาก EmailJS Account > API Keys</small>
-</div>
-
-<button class="save-config-btn" onclick="saveEmailConfig()">💾 บันทึกการตั้งค่า</button>
+<p>ระบบรายงานสิ่งของสูญหาย - Lost Items Reporting System</p>
 </div>
 
 <div class="form-section">
-<div class="success-message" id="successMessage"></div>
-<div class="error-message" id="errorMessage"></div>
+<div class="success-message" id="successMessage">
+✅ บันทึกรายงานของหายเรียบร้อยแล้ว!
+</div>
 
 <form id="lostItemForm">
 <div class="form-group">
@@ -361,13 +196,13 @@ margin: 20px;
 <label for="category">ประเภทของที่หาย *</label>
 <select id="category" name="category" required>
 <option value="">-- เลือกประเภท --</option>
-<option value="อุปกรณ์อิเล็กทรอนิกส์">อุปกรณ์อิเล็กทรอนิกส์</option>
-<option value="เอกสาร/บัตรต่างๆ">เอกสาร/บัตรต่างๆ</option>
-<option value="กระเป๋าเงิน/กระเป๋าสตางค์">กระเป๋าเงิน/กระเป๋าสตางค์</option>
-<option value="กุญแจ">กุญแจ</option>
-<option value="กระเป๋า">กระเป๋า</option>
-<option value="เครื่องประดับ">เครื่องประดับ</option>
-<option value="อื่นๆ">อื่นๆ</option>
+<option value="electronics">อุปกรณ์อิเล็กทรอนิกส์</option>
+<option value="documents">เอกสาร/บัตรต่างๆ</option>
+<option value="wallet">กระเป๋าเงิน/กระเป๋าสตางค์</option>
+<option value="keys">กุญแจ</option>
+<option value="bags">กระเป๋า</option>
+<option value="jewelry">เครื่องประดับ</option>
+<option value="other">อื่นๆ</option>
 </select>
 </div>
 
@@ -401,7 +236,7 @@ margin: 20px;
 <input type="email" id="email" name="email" placeholder="your.email@example.com">
 </div>
 
-<button type="submit" class="submit-btn" id="submitBtn">📝 ส่งรายงาน</button>
+<button type="submit" class="submit-btn">📝 ส่งรายงาน</button>
 </form>
 </div>
 
@@ -415,96 +250,6 @@ margin: 20px;
 
 <script>
 let reports = JSON.parse(localStorage.getItem('lostItemReports')) || [];
-let emailConfig = JSON.parse(localStorage.getItem('emailConfig')) || {};
-
-// Initialize EmailJS
-if (emailConfig.publicKey) {
-emailjs.init(emailConfig.publicKey);
-}
-
-function updateEmailStatus() {
-const statusEl = document.getElementById('emailStatus');
-const isConfigured = emailConfig.adminEmail && emailConfig.serviceId &&
-emailConfig.templateId && emailConfig.publicKey;
-
-if (isConfigured) {
-statusEl.textContent = '✅ พร้อมใช้งาน';
-statusEl.className = 'status-indicator status-active';
-} else {
-statusEl.textContent = '❌ ยังไม่ได้ตั้งค่า';
-statusEl.className = 'status-indicator status-inactive';
-}
-}
-
-function loadEmailConfig() {
-document.getElementById('adminEmail').value = emailConfig.adminEmail || '';
-document.getElementById('serviceId').value = emailConfig.serviceId || '';
-document.getElementById('templateId').value = emailConfig.templateId || '';
-document.getElementById('publicKey').value = emailConfig.publicKey || '';
-updateEmailStatus();
-}
-
-function saveEmailConfig() {
-emailConfig = {
-adminEmail: document.getElementById('adminEmail').value,
-serviceId: document.getElementById('serviceId').value,
-templateId: document.getElementById('templateId').value,
-publicKey: document.getElementById('publicKey').value
-};
-
-localStorage.setItem('emailConfig', JSON.stringify(emailConfig));
-
-// Initialize EmailJS with new key
-if (emailConfig.publicKey) {
-emailjs.init(emailConfig.publicKey);
-}
-
-updateEmailStatus();
-showMessage('success', '✅ บันทึกการตั้งค่าเรียบร้อยแล้ว!');
-}
-
-function showMessage(type, text) {
-const messageEl = document.getElementById(type === 'success' ? 'successMessage' : 'errorMessage');
-messageEl.textContent = text;
-messageEl.style.display = 'block';
-setTimeout(() => {
-messageEl.style.display = 'none';
-}, 5000);
-}
-
-async function sendEmailNotification(reportData) {
-if (!emailConfig.adminEmail || !emailConfig.serviceId ||
-!emailConfig.templateId || !emailConfig.publicKey) {
-console.log('Email not configured, skipping notification');
-return;
-}
-
-try {
-const templateParams = {
-to_email: emailConfig.adminEmail,
-itemName: reportData.itemName,
-category: reportData.category,
-description: reportData.description,
-location: reportData.location,
-lostDate: reportData.lostDate || 'ไม่ระบุ',
-reporterName: reportData.reporterName,
-phone: reportData.phone,
-email: reportData.email || 'ไม่ระบุ',
-reportDate: new Date(reportData.reportDate).toLocaleString('th-TH')
-};
-
-await emailjs.send(
-emailConfig.serviceId,
-emailConfig.templateId,
-templateParams
-);
-
-console.log('Email sent successfully');
-} catch (error) {
-console.error('Email sending failed:', error);
-throw error;
-}
-}
 
 function displayReports() {
 const reportsList = document.getElementById('reportsList');
@@ -517,7 +262,7 @@ return;
 reportsList.innerHTML = reports.map((report, index) => `
 <div class="report-card">
 <h3>${report.itemName}</h3>
-<div class="report-detail"><strong>ประเภท:</strong> ${report.category}</div>
+<div class="report-detail"><strong>ประเภท:</strong> ${getCategoryText(report.category)}</div>
 <div class="report-detail"><strong>รายละเอียด:</strong> ${report.description}</div>
 <div class="report-detail"><strong>วันที่ทำหาย:</strong> ${report.lostDate || 'ไม่ระบุ'}</div>
 <div class="report-detail"><strong>สถานที่:</strong> ${report.location}</div>
@@ -528,12 +273,21 @@ reportsList.innerHTML = reports.map((report, index) => `
 `).join('');
 }
 
-document.getElementById('lostItemForm').addEventListener('submit', async function(e) {
-e.preventDefault();
+function getCategoryText(category) {
+const categories = {
+'electronics': 'อุปกรณ์อิเล็กทรอนิกส์',
+'documents': 'เอกสาร/บัตรต่างๆ',
+'wallet': 'กระเป๋าเงิน/กระเป๋าสตางค์',
+'keys': 'กุญแจ',
+'bags': 'กระเป๋า',
+'jewelry': 'เครื่องประดับ',
+'other': 'อื่นๆ'
+};
+return categories[category] || category;
+}
 
-const submitBtn = document.getElementById('submitBtn');
-submitBtn.disabled = true;
-submitBtn.textContent = '⏳ กำลังส่ง...';
+document.getElementById('lostItemForm').addEventListener('submit', function(e) {
+e.preventDefault();
 
 const formData = {
 itemName: document.getElementById('itemName').value,
@@ -547,17 +301,15 @@ email: document.getElementById('email').value,
 reportDate: new Date().toISOString()
 };
 
-try {
-// Send email notification
-await sendEmailNotification(formData);
-
-// Save to local storage
 reports.unshift(formData);
 localStorage.setItem('lostItemReports', JSON.stringify(reports));
 
 // Show success message
-showMessage('success', '✅ บันทึกรายงานเรียบร้อยแล้ว! ' +
-(emailConfig.adminEmail ? 'ส่งอีเมลแจ้งเตือนแล้ว' : ''));
+const successMessage = document.getElementById('successMessage');
+successMessage.style.display = 'block';
+setTimeout(() => {
+successMessage.style.display = 'none';
+}, 3000);
 
 // Reset form
 this.reset();
@@ -567,55 +319,10 @@ displayReports();
 
 // Scroll to reports
 document.querySelector('.reports-section').scrollIntoView({ behavior: 'smooth' });
-
-} catch (error) {
-showMessage('error', '⚠️ บันทึกรายงานสำเร็จ แต่ไม่สามารถส่งอีเมลได้ กรุณาตรวจสอบการตั้งค่า EmailJS');
-
-// Still save locally even if email fails
-reports.unshift(formData);
-localStorage.setItem('lostItemReports', JSON.stringify(reports));
-this.reset();
-displayReports();
-} finally {
-submitBtn.disabled = false;
-submitBtn.textContent = '📝 ส่งรายงาน';
-}
 });
 
-// Load config and display reports on page load
-loadEmailConfig();
+// Display reports on page load
 displayReports();
 </script>
 </body>
 </html>
-```
-
-## 📧 **จุดสำคัญที่ต้องทำ:**
-
-### **ช่องที่ต้องใส่อีเมลของคุณ:**
-ในหน้าเว็บมีกล่องสีเหลือง **"⚙️ ตั้งค่าการแจ้งเตือน"** ให้:
-1. **ใส่อีเมลของคุณ** ในช่อง "อีเมลที่ต้องการรับการแจ้งเตือน" 👈 **ตรงนี้**
-2. ใส่ Service ID, Template ID และ Public Key จาก EmailJS
-3. กดปุ่ม "💾 บันทึกการตั้งค่า"
-
-### **วิธีตั้งค่า EmailJS (ฟรี):**
-
-1. **สมัคร**: ไปที่ https://www.emailjs.com/ สมัครฟรี
-2. **เพิ่ม Email Service**:
-- Dashboard → Email Services → Add New Service
-- เลือก Gmail (หรืออีเมลที่คุณใช้)
-3. **สร้าง Email Template**:
-- Email Templates → Create New Template
-- ใส่ตัวแปรเหล่านี้ในเทมเพลต:
-```
-มีคนแจ้งของหาย!
-
-ของที่หาย: {{itemName}}
-ประเภท: {{category}}
-รายละเอียด: {{description}}
-สถานที่: {{location}}
-วันที่หาย: {{lostDate}}
-
-ผู้แจ้ง: {{reporterName}}
-เบอร์: {{phone}}
-อีเมล: {{email}}
