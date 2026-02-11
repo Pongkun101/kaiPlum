@@ -1,396 +1,346 @@
 <!DOCTYPE html>
 <html lang="th">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>แจ้งของหาย - Lost Items Report</title>
-<style>
-* {
-margin: 0;
-padding: 0;
-box-sizing: border-box;
-}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>แจ้งของหาย - Lost Items Report (Firebase Edition)</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-body {
-font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-background: linear-gradient(135deg, #66ea6d 0%, #b75ace 100%);
-min-height: 100vh;
-padding: 20px;
-}
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #66ea6d 0%, #b75ace 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
 
-.container {
-max-width: 800px;
-margin: 0 auto;
-background: rgb(255, 255, 255);
-border-radius: 20px;
-box-shadow: 0 20px 60px rgba(214, 102, 209, 0.3);
-overflow: hidden;
-}
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: rgb(255, 255, 255);
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(214, 102, 209, 0.3);
+            overflow: hidden;
+        }
 
-.header {
-background: linear-gradient(135deg, #ff91ce 0%, #70ff8f 100%);
-color: white;
-padding: 40px 30px;
-text-align: center;
-}
+        .header {
+            background: linear-gradient(135deg, #ff91ce 0%, #70ff8f 100%);
+            color: white;
+            padding: 40px 30px;
+            text-align: center;
+        }
 
-.header h1 {
-font-size: 2.5em;
-margin-bottom: 10px;
-}
+        .header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
 
-.header p {
-font-size: 1.1em;
-opacity: 0.9;
-}
+        .header p {
+            font-size: 1.1em;
+            opacity: 0.9;
+        }
 
-.form-section {
-padding: 40px 30px;
-}
+        .form-section {
+            padding: 40px 30px;
+        }
 
-.form-group {
-margin-bottom: 25px;
-}
+        .form-group {
+            margin-bottom: 25px;
+        }
 
-label {
-display: block;
-font-weight: 600;
-margin-bottom: 8px;
-color: hsl(0, 0%, 0%);
-font-size: 1.05em;
-}
+        label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: hsl(0, 0%, 0%);
+            font-size: 1.05em;
+        }
 
-input[type="text"],
-input[type="tel"],
-input[type="email"],
-input[type="date"],
-textarea,
-select {
-width: 100%;
-padding: 12px 15px;
-border: 2px solid #ff94d6;
-border-radius: 10px;
-font-size: 1em;
-transition: all 0.3s;
-font-family: inherit;
-}
+        input[type="text"],
+        input[type="tel"],
+        input[type="email"],
+        input[type="date"],
+        textarea,
+        select {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid #ff94d6;
+            border-radius: 10px;
+            font-size: 1em;
+            transition: all 0.3s;
+            font-family: inherit;
+        }
 
-input:focus,
-textarea:focus,
-select:focus {
-outline: none;
-border-color: #c65adb;
-box-shadow: 0 0 0 3px rgba(84, 207, 146, 0.1);
-}
+        input:focus,
+        textarea:focus,
+        select:focus {
+            outline: none;
+            border-color: #c65adb;
+            box-shadow: 0 0 0 3px rgba(84, 207, 146, 0.1);
+        }
 
-textarea {
-resize: vertical;
-min-height: 120px;
-}
+        textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
 
-.submit-btn {
-width: 100%;
-padding: 15px;
-background: linear-gradient(135deg, #7fffaa 0%, #da72d4 100%);
-color: white;
-border: none;
-border-radius: 10px;
-font-size: 1.2em;
-font-weight: 600;
-cursor: pointer;
-transition: transform 0.2s, box-shadow 0.2s;
-}
+        .submit-btn {
+            width: 100%;
+            padding: 15px;
+            background: linear-gradient(135deg, #7fffaa 0%, #da72d4 100%);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 1.2em;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
 
-.submit-btn:hover {
-transform: translateY(-2px);
-box-shadow: 0 10px 25px rgba(221, 79, 186, 0.3);
-}
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(221, 79, 186, 0.3);
+        }
 
-.submit-btn:active {
-transform: translateY(0);
-}
+        .reports-section {
+            background: #f8f9fa;
+            padding: 40px 30px;
+            border-top: 2px solid #e0e0e0;
+        }
 
-.reports-section {
-background: #f8f9fa;
-padding: 40px 30px;
-border-top: 2px solid #e0e0e0;
-}
+        .reports-section h2 {
+            color: #e94ec7;
+            margin-bottom: 20px;
+            font-size: 1.8em;
+        }
 
-.reports-section h2 {
-color: #e94ec7;
-margin-bottom: 20px;
-font-size: 1.8em;
-}
+        .report-card {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 15px;
+            border-left: 4px solid #57ff97;
+            box-shadow: 0 2px 8px rgba(248, 108, 178, 0.1);
+        }
 
-.report-card {
-background: white;
-padding: 20px;
-border-radius: 10px;
-margin-bottom: 15px;
-border-left: 4px solid #57ff97;
-box-shadow: 0 2px 8px rgba(248, 108, 178, 0.1);
-}
+        .report-card h3 {
+            color: #ff7aff;
+            margin-bottom: 10px;
+        }
 
-.report-card h3 {
-color: #ff7aff;
-margin-bottom: 10px;
-}
+        .report-detail {
+            margin: 8px 0;
+            color: #555;
+        }
 
-.report-detail {
-margin: 8px 0;
-color: #555;
-}
+        .report-detail strong {
+            color: #e448bd;
+        }
 
-.report-detail strong {
-color: #e448bd;
-}
+        .no-reports {
+            text-align: center;
+            color: #999;
+            padding: 40px;
+            font-size: 1.1em;
+        }
 
-.no-reports {
-text-align: center;
-color: #999;
-padding: 40px;
-font-size: 1.1em;
-}
+        .success-message {
+            background: #d4edda;
+            color: #155724;
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #c3e6cb;
+            display: none;
+        }
 
-.success-message {
-background: #d4edda;
-color: #155724;
-padding: 15px;
-border-radius: 10px;
-margin-bottom: 20px;
-border: 1px solid #c3e6cb;
-display: none;
-}
-
-@media (max-width: 600px) {
-.header h1 {
-font-size: 1.8em;
-}
-
-.form-section,
-.reports-section {
-padding: 30px 20px;
-}
-}
-</style>
+        @media (max-width: 600px) {
+            .header h1 { font-size: 1.8em; }
+            .form-section, .reports-section { padding: 30px 20px; }
+        }
+    </style>
 </head>
 <body>
+
 <div class="container">
-<div class="header">
-<h1>🔍 แจ้งของหาย</h1>
-<p>ระบบรายงานสิ่งของสูญหาย - Lost Items Reporting System</p>
+    <div class="header">
+        <h1>🔍 แจ้งของหาย</h1>
+        <p>ระบบรายงานสิ่งของสูญหาย - ข้อมูลอัปเดตแบบ Real-time</p>
+    </div>
+
+    <div class="form-section">
+        <div class="success-message" id="successMessage">
+            ✅ บันทึกรายงานของหายเรียบร้อยแล้ว! ข้อมูลจะปรากฏด้านล่างทันที
+        </div>
+
+        <form id="lostItemForm">
+            <div class="form-group">
+                <label for="itemName">ชื่อของที่หาย *</label>
+                <input type="text" id="itemName" name="itemName" placeholder="เช่น กระเป๋าสตางค์, โทรศัพท์มือถือ" required>
+            </div>
+
+            <div class="form-group">
+                <label for="category">ประเภทของที่หาย *</label>
+                <select id="category" name="category" required>
+                    <option value="">-- เลือกประเภท --</option>
+                    <option value="electronics">อุปกรณ์อิเล็กทรอนิกส์</option>
+                    <option value="documents">เอกสาร/บัตรต่างๆ</option>
+                    <option value="wallet">กระเป๋าเงิน/กระเป๋าสตางค์</option>
+                    <option value="keys">กุญแจ</option>
+                    <option value="bags">กระเป๋า</option>
+                    <option value="jewelry">เครื่องประดับ</option>
+                    <option value="other">อื่นๆ</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="description">รายละเอียดของที่หาย *</label>
+                <textarea id="description" name="description" placeholder="อธิบายลักษณะ สี ขนาด" required></textarea>
+            </div>
+
+            <div class="form-group">
+                <label for="lostDate">วันที่ทำหาย</label>
+                <input type="date" id="lostDate" name="lostDate">
+            </div>
+
+            <div class="form-group">
+                <label for="location">สถานที่ที่ทำหาย *</label>
+                <input type="text" id="location" name="location" placeholder="เช่น ตึก A ชั้น 3" required>
+            </div>
+
+            <div class="form-group">
+                <label for="reporterName">ชื่อผู้แจ้ง *</label>
+                <input type="text" id="reporterName" name="reporterName" placeholder="ชื่อของคุณ" required>
+            </div>
+
+            <div class="form-group">
+                <label for="phone">เบอร์โทรติดต่อ *</label>
+                <input type="tel" id="phone" name="phone" placeholder="0XX-XXX-XXXX" required>
+            </div>
+
+            <div class="form-group">
+                <label for="email">อีเมล</label>
+                <input type="email" id="email" name="email" placeholder="email@example.com">
+            </div>
+
+            <button type="submit" class="submit-btn" id="submitBtn">📝 ส่งรายงาน</button>
+        </form>
+    </div>
+
+    <div class="reports-section">
+        <h2>📋 รายการของที่แจ้งหาย</h2>
+        <div id="reportsList">
+            <div class="no-reports">กำลังโหลดข้อมูล...</div>
+        </div>
+    </div>
 </div>
 
-<div class="form-section">
-<div class="success-message" id="successMessage">
-✅ บันทึกรายงานของหายเรียบร้อยแล้ว!
-</div>
-
-<form id="lostItemForm">
-<div class="form-group">
-<label for="itemName">ชื่อของที่หาย *</label>
-<input type="text" id="itemName" name="itemName" placeholder="เช่น กระเป๋าสตางค์, โทรศัพท์มือถือ, กุญแจรถ" required>
-</div>
-
-<div class="form-group">
-<label for="category">ประเภทของที่หาย *</label>
-<select id="category" name="category" required>
-<option value="">-- เลือกประเภท --</option>
-<option value="electronics">อุปกรณ์อิเล็กทรอนิกส์</option>
-<option value="documents">เอกสาร/บัตรต่างๆ</option>
-<option value="wallet">กระเป๋าเงิน/กระเป๋าสตางค์</option>
-<option value="keys">กุญแจ</option>
-<option value="bags">กระเป๋า</option>
-<option value="jewelry">เครื่องประดับ</option>
-<option value="other">อื่นๆ</option>
-</select>
-</div>
-
-<div class="form-group">
-<label for="description">รายละเอียดของที่หาย *</label>
-<textarea id="description" name="description" placeholder="อธิบายลักษณะ สี ขนาด หรือรายละเอียดอื่นๆ ที่จะช่วยระบุตัวของได้" required></textarea>
-</div>
-
-<div class="form-group">
-<label for="lostDate">วันที่ทำหาย</label>
-<input type="date" id="lostDate" name="lostDate">
-</div>
-
-<div class="form-group">
-<label for="location">สถานที่ที่ทำหาย *</label>
-<input type="text" id="location" name="location" placeholder="เช่น ตึก A ชั้น 3, ห้องประชุม, ลานจอดรถ" required>
-</div>
-
-<div class="form-group">
-<label for="reporterName">ชื่อผู้แจ้ง *</label>
-<input type="text" id="reporterName" name="reporterName" placeholder="ชื่อ-นามสกุล" required>
-</div>
-
-<div class="form-group">
-<label for="phone">เบอร์โทรติดต่อ *</label>
-<input type="tel" id="phone" name="phone" placeholder="0XX-XXX-XXXX" required>
-</div>
-
-<div class="form-group">
-<label for="email">อีเมล</label>
-<input type="email" id="email" name="email" placeholder="your.email@example.com">
-</div>
-
-<button type="submit" class="submit-btn">📝 ส่งรายงาน</button>
-</form>
-</div>
-
-<div class="reports-section">
-<h2>📋 รายการของที่แจ้งหาย</h2>
-<div id="reportsList">
-<div class="no-reports">ยังไม่มีรายการแจ้งของหาย</div>
-</div>
-</div>
-</div>
-
-<script>
-let reports = JSON.parse(localStorage.getItem('lostItemReports')) || [];
-
-function displayReports() {
-const reportsList = document.getElementById('reportsList');
-
-if (reports.length === 0) {
-reportsList.innerHTML = '<div class="no-reports">ยังไม่มีรายการแจ้งของหาย</div>';
-return;
-}
-
-reportsList.innerHTML = reports.map((report, index) => `
-<div class="report-card">
-<h3>${report.itemName}</h3>
-<div class="report-detail"><strong>ประเภท:</strong> ${getCategoryText(report.category)}</div>
-<div class="report-detail"><strong>รายละเอียด:</strong> ${report.description}</div>
-<div class="report-detail"><strong>วันที่ทำหาย:</strong> ${report.lostDate || 'ไม่ระบุ'}</div>
-<div class="report-detail"><strong>สถานที่:</strong> ${report.location}</div>
-<div class="report-detail"><strong>ผู้แจ้ง:</strong> ${report.reporterName}</div>
-<div class="report-detail"><strong>ติดต่อ:</strong> ${report.phone}${report.email ? ' | ' + report.email : ''}</div>
-<div class="report-detail"><strong>วันที่แจ้ง:</strong> ${new Date(report.reportDate).toLocaleString('th-TH')}</div>
-</div>
-`).join('');
-}
-
-function getCategoryText(category) {
-const categories = {
-'electronics': 'อุปกรณ์อิเล็กทรอนิกส์',
-'documents': 'เอกสาร/บัตรต่างๆ',
-'wallet': 'กระเป๋าเงิน/กระเป๋าสตางค์',
-'keys': 'กุญแจ',
-'bags': 'กระเป๋า',
-'jewelry': 'เครื่องประดับ',
-'other': 'อื่นๆ'
-};
-return categories[category] || category;
-}
-
-document.getElementById('lostItemForm').addEventListener('submit', function(e) {
-e.preventDefault();
-
-const formData = {
-itemName: document.getElementById('itemName').value,
-category: document.getElementById('category').value,
-description: document.getElementById('description').value,
-lostDate: document.getElementById('lostDate').value,
-location: document.getElementById('location').value,
-reporterName: document.getElementById('reporterName').value,
-phone: document.getElementById('phone').value,
-email: document.getElementById('email').value,
-reportDate: new Date().toISOString()
-};
-
-reports.unshift(formData);
-localStorage.setItem('lostItemReports', JSON.stringify(reports));
-
-// Show success message
-const successMessage = document.getElementById('successMessage');
-successMessage.style.display = 'block';
-setTimeout(() => {
-successMessage.style.display = 'none';
-}, 3000);
-
-// Reset form
-this.reset();
-
-// Update display
-displayReports();
-
-// Scroll to reports
-document.querySelector('.reports-section').scrollIntoView({ behavior: 'smooth' });
-});
-
-// Display reports on page load
-displayReports();
-</script>
-   <input type="text" id="myInput" placeholder="พิมพ์ข้อความที่นี่...">
-<button onclick="sendData()">ส่งข้อมูล</button>
-
-<ul id="dataList">
-  </ul>
 <script type="module">
+    // นำเข้า Firebase จาก CDN
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+    import { getFirestore, collection, addDoc, onSnapshot, query, orderBy } 
+        from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
 
-  // Import the functions you need from the SDKs you need
+    // 1. *** แก้ไขตรงนี้: นำข้อมูลจาก Firebase Console มาวาง ***
+    const firebaseConfig = {
+        apiKey: "YOUR_API_KEY",
+        authDomain: "YOUR_PROJECT_ID.firebaseapp.com",
+        projectId: "YOUR_PROJECT_ID",
+        storageBucket: "YOUR_PROJECT_ID.appspot.com",
+        messagingSenderId: "YOUR_SENDER_ID",
+        appId: "YOUR_APP_ID"
+    };
 
-  import { initializeApp } from "https://www.gstatic.com/firebasejs/12.9.0/firebase-app.js";
-  import { getAnalytics } from "https://www.gstatic.com/firebasejs/12.9.0/firebase-analytics.js";
+    // เริ่มต้นเชื่อมต่อ
+    const app = initializeApp(firebaseConfig);
+    const db = getFirestore(app);
+    const reportsCol = collection(db, "lostItems");
 
-  // TODO: Add SDKs for Firebase products that you want to use
-
-  // https://firebase.google.com/docs/web/setup#available-libraries
-
-
-  // Your web app's Firebase configuration
-
-  // For Firebase JS SDK v7.20.0 and later, measurementId is optional
-
-  const firebaseConfig = {
-    apiKey: "AIzaSyDni4qYbb-p6btwF5btGYp6junEtrpnVDE",
-    authDomain: "finding-missing-item.firebaseapp.com",
-    projectId: "finding-missing-item",
-    storageBucket: "finding-missing-item.firebasestorage.app",
-    messagingSenderId: "397407635579",
-    appId: "1:397407635579:web:caf6086333589592543ade",
-    measurementId: "G-8YJ82Z6S1N"
-
-  };
-
-
-  // Initialize Firebase
-
-  const app = initializeApp(firebaseConfig);
-
-  const analytics = getAnalytics(app);
-
-  // --- ส่วนการทำงาน ---
-
-  // 1. ฟังก์ชันส่งข้อมูล (เมื่อผู้ใช้กดส่ง)
-  window.sendData = async () => {
-    const userInput = document.getElementById('myInput').value;
-    try {
-      await addDoc(collection(db, "messages"), {
-        text: userInput,
-        timestamp: new Date()
-      });
-      document.getElementById('myInput').value = ""; // ล้างช่องกรอก
-    } catch (e) {
-      console.error("Error adding document: ", e);
+    // ฟังก์ชันช่วยแสดงชื่อประเภทภาษาไทย
+    function getCategoryText(category) {
+        const categories = {
+            'electronics': 'อุปกรณ์อิเล็กทรอนิกส์',
+            'documents': 'เอกสาร/บัตรต่างๆ',
+            'wallet': 'กระเป๋าเงิน/กระเป๋าสตางค์',
+            'keys': 'กุญแจ',
+            'bags': 'กระเป๋า',
+            'jewelry': 'เครื่องประดับ',
+            'other': 'อื่นๆ'
+        };
+        return categories[category] || category;
     }
-  };
 
-  // 2. ฟังก์ชันดึงข้อมูลมาแสดงแบบ Real-time
-  const q = query(collection(db, "messages"), orderBy("timestamp", "desc"));
-  onSnapshot(q, (snapshot) => {
-    const listElement = document.getElementById('dataList');
-    listElement.innerHTML = ""; // ล้างค่าเก่า
-    snapshot.forEach((doc) => {
-      const li = document.createElement("li");
-      li.textContent = doc.data().text;
-      listElement.appendChild(li);
+    // 2. ดึงข้อมูลแบบ Real-time (Snapshot)
+    const q = query(reportsCol, orderBy("reportDate", "desc"));
+    onSnapshot(q, (snapshot) => {
+        const reportsList = document.getElementById('reportsList');
+        
+        if (snapshot.empty) {
+            reportsList.innerHTML = '<div class="no-reports">ยังไม่มีรายการแจ้งของหายในระบบ</div>';
+            return;
+        }
+
+        const reportsHTML = snapshot.docs.map(doc => {
+            const report = doc.data();
+            return `
+                <div class="report-card">
+                    <h3>${report.itemName}</h3>
+                    <div class="report-detail"><strong>ประเภท:</strong> ${getCategoryText(report.category)}</div>
+                    <div class="report-detail"><strong>รายละเอียด:</strong> ${report.description}</div>
+                    <div class="report-detail"><strong>วันที่ทำหาย:</strong> ${report.lostDate || 'ไม่ระบุ'}</div>
+                    <div class="report-detail"><strong>สถานที่:</strong> ${report.location}</div>
+                    <div class="report-detail"><strong>ผู้แจ้ง:</strong> ${report.reporterName}</div>
+                    <div class="report-detail"><strong>ติดต่อ:</strong> ${report.phone}${report.email ? ' | ' + report.email : ''}</div>
+                    <div class="report-detail"><strong>วันที่แจ้ง:</strong> ${new Date(report.reportDate).toLocaleString('th-TH')}</div>
+                </div>
+            `;
+        }).join('');
+        
+        reportsList.innerHTML = reportsHTML;
     });
-  });
+
+    // 3. ฟังก์ชันส่งข้อมูลเมื่อกด Submit
+    document.getElementById('lostItemForm').addEventListener('submit', async function(e) {
+        e.preventDefault();
+        const btn = document.getElementById('submitBtn');
+        btn.disabled = true;
+        btn.innerText = "กำลังบันทึก...";
+
+        const formData = {
+            itemName: document.getElementById('itemName').value,
+            category: document.getElementById('category').value,
+            description: document.getElementById('description').value,
+            lostDate: document.getElementById('lostDate').value,
+            location: document.getElementById('location').value,
+            reporterName: document.getElementById('reporterName').value,
+            phone: document.getElementById('phone').value,
+            email: document.getElementById('email').value,
+            reportDate: new Date().toISOString()
+        };
+
+        try {
+            await addDoc(reportsCol, formData);
+            
+            // แสดงข้อความสำเร็จ
+            const successMessage = document.getElementById('successMessage');
+            successMessage.style.display = 'block';
+            setTimeout(() => { successMessage.style.display = 'none'; }, 4000);
+
+            this.reset();
+            document.querySelector('.reports-section').scrollIntoView({ behavior: 'smooth' });
+        } catch (error) {
+            console.error("Error: ", error);
+            alert("เกิดข้อผิดพลาด: " + error.message);
+        } finally {
+            btn.disabled = false;
+            btn.innerText = "📝 ส่งรายงาน";
+        }
+    });
 </script>
- 
+
 </body>
 </html>
